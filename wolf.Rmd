@@ -1,0 +1,46 @@
+---
+title: "[娛樂百分百]<<凹嗚狼人殺>>"
+author: "Anny"
+date: "`r Sys.time()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+####Data
+```{r}
+b=read.csv("wolf.csv",stringsAsFactors = F)
+b=b[,-1]
+head(b,20)
+```
+####人 V.S. 角色
+```{r}
+table(b$name,b$role)
+```
+
+####勝率（Win=1, Lose=0）
+```{r}
+table(b$name,b$score)
+```
+
+####
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
