@@ -1,5 +1,5 @@
 ---
-title: "[娛樂百分百]<<凹嗚狼人殺>>"
+title: "[娛樂百分百]<凹嗚狼人殺>簡單分析"
 author: "Anny"
 date: "`r Sys.time()`"
 output: html_document
@@ -9,24 +9,55 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 ```
+<br>
 
-####Data
+### `r "\U1F43A"` Data
+欄位説明：<br>
+
++ date：日期
++ position：座位
++ name：玩家姓名
++ role：拿到的角色牌（狼王，雪狼，狼人 / 女巫，預言家，獵人，騎士，禁言長老，平民）
++ die：被淘汰的順序（1:10，0表示遊戲結束還活著）
++ score：哪一方獲勝（1:贏，0:輸）
++ MVP：每場表現最好玩家
+```{r,eval=FALSE}
+position = c(1:10)
+date = rep(c("2019-10-02"),10) %>% as.Date()
+name = c("邱鋒澤","陳零九","大飛","愷樂","宇辰","偉晉","陳敬宣","張語噥","王思佳","小豬")
+role = c("雪狼","女巫","狼人","獵人","騎士","平民","平民","預言家","平民","狼人")
+die = c(0,2,3,0,0,6,0,5,4,1) #被淘汰順序1:10, 0:遊戲結束還活著
+score = ifelse(role == "狼人"|role =="狼王"|role =="雪狼",1,0) #Win=1, lose=0
+MVP = c(1,0,0,0,0,0,0,0,0,0)
+a=data.frame(date,position,name,role,die,MVP,score)
+b=rbind(a,c)
+write.csv(b,file="wolf.csv")
+```
+
+
+<br>
+
+### `r "\U1F43A"` Glimpse
 ```{r}
 b=read.csv("wolf.csv",stringsAsFactors = F)
 b=b[,-1]
 head(b,20)
 ```
-####人 V.S. 角色
+<br>
+
+### `r "\U1F43A"` 人 V.S. 角色
 ```{r}
 table(b$name,b$role)
 ```
+<br>
 
-####勝率（Win=1, Lose=0）
+### `r "\U1F43A"` 勝率（Win=1, Lose=0）
 ```{r}
 table(b$name,b$score)
 ```
+<br>
 
-####
+### `r "\U1F43A"` 
 ```{r}
 
 ```
