@@ -186,7 +186,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">[娛樂百分百]<凹嗚狼人殺>簡單分析</h1>
 <h4 class="author"><em>Anny</em></h4>
-<h4 class="date"><em>2019-10-10 20:57:37</em></h4>
+<h4 class="date"><em>2019-10-10 21:00:48</em></h4>
 
 </div>
 
@@ -345,14 +345,14 @@ head(b,20)</code></pre>
 </div>
 <div class="section level3">
 <h3>🐺 勝率</h3>
-<pre class="r"><code>win_rate = b %&gt;% 
+<pre class="r"><code>w = b %&gt;% 
   group_by(name) %&gt;%
   summarise(win = sum(score), #score=1
             lose = sum(score==0), #score=0
             total_play = sum(score==0,score==1), #總共玩幾場
             win_rate = sum(score)/total_play) %&gt;% #勝率
-  arrange(desc(total_play)) #照玩幾場排序
-print.data.frame(win_rate)</code></pre>
+  arrange(desc(total_play,win_rate)) #照玩幾場排序
+print.data.frame(w)</code></pre>
 <pre><code>##      name win lose total_play  win_rate
 ## 1    愷樂  28   17         45 0.6222222
 ## 2    小豬  23   15         38 0.6052632
